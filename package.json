@@ -4,7 +4,7 @@
   "description": "A lightweight CLI tool that automates `git add`, `git commit`, and `git push` — with optional flags for flexibility.",
   "main": "index.js",
   "bin": {
-    "gitgc": "./bin/index.js"
+    "gitgc": "./index.js"
   },
   "keywords": [
     "git",

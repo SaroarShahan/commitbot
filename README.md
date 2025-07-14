@@ -7,7 +7,7 @@ A lightweight CLI tool that automates `git add`, `git commit`, and `git push` �
 ## 📦 Installation
 
 ```bash
-npm install -g gitgc
+npm install -g @saroarshahan/gitgc
 ```
 
 ## 🛠️ Usage
