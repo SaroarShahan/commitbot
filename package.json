@@ -1,10 +1,10 @@
 {
-  "name": "gitwizard",
+  "name": "gitgc",
   "version": "1.0.0",
   "description": "A lightweight CLI tool that automates `git add`, `git commit`, and `git push` — with optional flags for flexibility.",
   "main": "index.js",
   "bin": {
-    "gitwizard": "./bin/index.js"
+    "gitgc": "./bin/index.js"
   },
   "keywords": [
     "git",

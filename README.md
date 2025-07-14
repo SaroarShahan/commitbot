@@ -1,4 +1,4 @@
-# 🚀 gitwizard
+# 🚀 gitgc
 
 A lightweight CLI tool that automates `git add`, `git commit`, and `git push` — with optional flags for flexibility.
 
@@ -7,13 +7,13 @@ A lightweight CLI tool that automates `git add`, `git commit`, and `git push` �
 ## 📦 Installation
 
 ```bash
-npm install -g gitwizard
+npm install -g gitgc
 ```
 
 ## 🛠️ Usage
 
 ```bash
-gitwizard "your commit message" [--options]
+gitgc "your commit message" [--options]
 ```
 
 ## 🔧 Options
@@ -31,19 +31,19 @@ gitwizard "your commit message" [--options]
 
 ```bash
 # Simple commit and push
-gitwizard "fix: resolve issue with DataTable filter state"
+gitgc "fix: resolve issue with DataTable filter state"
 
 # Commit specific file
-gitwizard "style: update item alignment in CSS" --files src/header.css
+gitgc "style: update item alignment in CSS" --files src/header.css
 
 # Amend the previous commit and skip push
-gitwizard "fix: reword commit" --amend --no-push
+gitgc "fix: reword commit" --amend --no-push
 
 # Push to different remote and branch
-gitwizard "feat: deploy script added" --remote upstream --branch dev
+gitgc "feat: deploy script added" --remote upstream --branch dev
 
 # Interactive mode (no commit message)
-gitwizard
+gitgc
 ```
 
 ## 🔍 Features
