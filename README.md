@@ -1,4 +1,4 @@
-# 🚀 gitgc
+# 🚀 @saroarshahan/gitgc
 
 A lightweight CLI tool that automates `git add`, `git commit`, and `git push` — with optional flags for flexibility.
 
@@ -7,13 +7,13 @@ A lightweight CLI tool that automates `git add`, `git commit`, and `git push` �
 ## 📦 Installation
 
 ```bash
-npm install -g @saroarshahan/gitgc
+yarn add @saroarshahan/gitgc
 ```
 
 ## 🛠️ Usage
 
 ```bash
-gitgc "your commit message" [--options]
+yarn gitgc "your commit message" [--options]
 ```
 
 ## 🔧 Options
@@ -31,19 +31,19 @@ gitgc "your commit message" [--options]
 
 ```bash
 # Simple commit and push
-gitgc "fix: resolve issue with DataTable filter state"
+yarn gitgc "fix: resolve issue with DataTable filter state"
 
 # Commit specific file
-gitgc "style: update item alignment in CSS" --files src/header.css
+yarn gitgc "style: update item alignment in CSS" --files src/header.css
 
 # Amend the previous commit and skip push
-gitgc "fix: reword commit" --amend --no-push
+yarn gitgc "fix: reword commit" --amend --no-push
 
 # Push to different remote and branch
-gitgc "feat: deploy script added" --remote upstream --branch dev
+yarn gitgc "feat: deploy script added" --remote upstream --branch dev
 
 # Interactive mode (no commit message)
-gitgc
+yarn gitgc
 ```
 
 ## 🔍 Features

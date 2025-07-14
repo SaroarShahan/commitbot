@@ -33,7 +33,7 @@ function isWorkingTreeClean() {
 async function main() {
   if (argv.help || argv.h) {
     console.log(`
-${chalk.green('Usage:')} git-auto [commit message] [--options]
+${chalk.green('Usage:')} gitgc [commit message] [--options]
 
 ${chalk.yellow('Options:')}
   --files <pattern>    Specify files/folders to add (default: .)
