@@ -40,7 +40,7 @@ yarn gitgc "style: update item alignment in CSS" --files src/header.css
 yarn gitgc "fix: reword commit" --amend --no-push
 
 # Push to different remote and branch
-yarn gitgc "feat: deploy script added" --remote upstream --branch dev
+yarn gitgc "feat: deploy script added" --remote origin --branch dev
 
 # Interactive mode (no commit message)
 yarn gitgc

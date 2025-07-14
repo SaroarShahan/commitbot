@@ -57,7 +57,9 @@ ${chalk.yellow('Options:')}
   }
 
   let finalMessage = commitMsg;
+  
   if (!finalMessage) {
+
     const answers = await inquirer.prompt([
       {
         type: 'input',
@@ -66,10 +68,12 @@ ${chalk.yellow('Options:')}
         validate: input => input.trim() !== '' || 'Commit message cannot be empty',
       },
     ]);
+
     finalMessage = answers.msg;
   }
 
   console.log(chalk.blue(`📂 Adding files: ${files}`));
+
   run(`git add ${files}`);
 
   if (shouldAmend) {
