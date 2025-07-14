@@ -1,10 +1,10 @@
 #!/usr/bin/env node
+import inquirer from 'inquirer';
+import chalk from 'chalk';
+import minimist from 'minimist';
+import { execSync } from 'child_process';
 
-const { execSync } = require('child_process');
-const inquirer = require('inquirer');
-const chalk = require('chalk');
-const argv = require('minimist')(process.argv.slice(2));
-
+const argv = minimist(process.argv.slice(2));
 const commitMsg = argv._[0];
 const remote = argv.remote || 'origin';
 const branch = argv.branch || 'main';
