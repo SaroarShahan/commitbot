@@ -1,4 +1,4 @@
-# 🚀 commitbot
+# 🚀 gitwizard
 
 A lightweight CLI tool that automates `git add`, `git commit`, and `git push` — with optional flags for flexibility.
 
@@ -7,13 +7,13 @@ A lightweight CLI tool that automates `git add`, `git commit`, and `git push` �
 ## 📦 Installation
 
 ```bash
-npm install -g commitbot
+npm install -g gitwizard
 ```
 
 ## 🛠️ Usage
 
 ```bash
-commitbot "your commit message" [--options]
+gitwizard "your commit message" [--options]
 ```
 
 ## 🔧 Options
@@ -31,19 +31,19 @@ commitbot "your commit message" [--options]
 
 ```bash
 # Simple commit and push
-commitbot "fix: resolve issue with DataTable filter state"
+gitwizard "fix: resolve issue with DataTable filter state"
 
 # Commit specific file
-commitbot "style: update item alignment in CSS" --files src/header.css
+gitwizard "style: update item alignment in CSS" --files src/header.css
 
 # Amend the previous commit and skip push
-commitbot "fix: reword commit" --amend --no-push
+gitwizard "fix: reword commit" --amend --no-push
 
 # Push to different remote and branch
-commitbot "feat: deploy script added" --remote upstream --branch dev
+gitwizard "feat: deploy script added" --remote upstream --branch dev
 
 # Interactive mode (no commit message)
-commitbot
+gitwizard
 ```
 
 ## 🔍 Features

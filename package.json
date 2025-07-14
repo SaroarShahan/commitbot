@@ -1,10 +1,10 @@
 {
-  "name": "commitbot",
+  "name": "gitwizard",
   "version": "1.0.0",
   "description": "A lightweight CLI tool that automates `git add`, `git commit`, and `git push` — with optional flags for flexibility.",
   "main": "index.js",
   "bin": {
-    "commitbot": "./bin/commitbot.js"
+    "gitwizard": "./bin/index.js"
   },
   "keywords": [
     "git",
@@ -14,7 +14,7 @@
     "push",
     "npm-package"
   ],
-  "author": "SaroarShahan",
+  "author": "Saroar Shahan",
   "license": "MIT",
   "dependencies": {
     "chalk": "5.3.0",
