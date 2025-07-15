@@ -11,8 +11,9 @@ const commitMsg = argv._[0];
 const remote = argv.remote || 'origin';
 const branch = argv.branch || 'main';
 const files = argv.files || '.';
-const shouldAmend = argv.amend || false;
-const skipPush = argv['no-push'] || false;
+const pushOnly = Boolean(argv['push-only']);
+const shouldAmend = Boolean(argv.amend);
+const skipPush = Boolean(argv['no-push']);
 const skipHooks = Boolean(argv['no-verify']);
 const noVerify = skipHooks ? '--no-verify' : '';
 
@@ -104,7 +105,7 @@ ${chalk.yellow('Options:')}
     finalMessage = answers.msg;
   }
 
-  if (argv['push-only']) {
+  if (pushOnly) {
     console.log(chalk.blue('🔁 Push-only mode enabled. Skipping commit and staging...'));
 
     run(`git push ${remote} ${branch}${noVerify}`);
