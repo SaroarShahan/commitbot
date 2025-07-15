@@ -12,8 +12,31 @@ const files = argv.files || '.';
 const shouldAmend = argv.amend || false;
 const skipPush = argv['no-push'] || false;
 
-function run(cmd) {
-  execSync(cmd, { stdio: 'inherit' });
+async function run(cmd, options = {}) {
+  try {
+    execSync(cmd, { stdio: 'inherit', ...options });
+  } catch (error) {
+    const isGitCommit = cmd.startsWith('git commit');
+    const isGitPush = cmd.startsWith('git push');
+
+    if (isGitCommit) {
+      console.error(chalk.red('❌ Git commit failed.'));
+      console.error(chalk.gray('👉 This may be caused by a pre-commit or commit-msg hook (e.g., Husky).'));
+    } else if (isGitPush) {
+      console.error(chalk.red('❌ Git push failed.'));
+      console.error(chalk.gray('👉 This may be caused by a pre-push hook or network issue.'));
+    } else {
+      console.error(chalk.red(`❌ Command failed: ${cmd}`));
+    }
+  }
+
+  if (typeof error.status !== "undefined") {
+    console.error(chalk.red(`❌ Command exited with status ${error.status}`));
+    process.exit(error.status);
+  } else {
+    console.error(chalk.red('❌ An unknown error occurred.'));
+    process.exit(1);
+  }
 }
 
 function isInsideGitRepo() {
@@ -57,7 +80,7 @@ ${chalk.yellow('Options:')}
   }
 
   let finalMessage = commitMsg;
-  
+
   if (!finalMessage) {
 
     const answers = await inquirer.prompt([
