@@ -25,6 +25,7 @@ yarn gitgc "your commit message" [--options]
 | `--branch`     | Git branch to push to                               | `main`   |
 | `--amend`      | Amend the last commit instead of creating a new one | `false`  |
 | `--no-push`    | Skips the `git push` step                           | `false`  |
+| `--push-only`  | Skip staging/commit. Only pushes to remote branch.  | `false`  |
 | `-h`, `--help` | Show help information                               |          |
 
 ### 🧪 Final Behavior
