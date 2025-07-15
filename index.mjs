@@ -84,6 +84,14 @@ ${chalk.yellow('Options:')}
     process.exit(1);
   }
 
+  if (pushOnly) {
+    console.log(chalk.blue('🔁 Push-only mode enabled. Skipping commit and staging...'));
+
+    run(`git push ${remote} ${branch}${noVerify}`);
+    console.log(chalk.bold.green('✅ Done!'));
+    process.exit(0);
+  }
+
   if (isWorkingTreeClean()) {
     console.log(chalk.yellow('✔️ Nothing to commit. Working tree is clean.'));
     return;
@@ -103,14 +111,6 @@ ${chalk.yellow('Options:')}
     ]);
 
     finalMessage = answers.msg;
-  }
-
-  if (pushOnly) {
-    console.log(chalk.blue('🔁 Push-only mode enabled. Skipping commit and staging...'));
-
-    run(`git push ${remote} ${branch}${noVerify}`);
-    console.log(chalk.bold.green('✅ Done!'));
-    process.exit(0);
   }
 
 
