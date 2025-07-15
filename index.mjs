@@ -28,15 +28,17 @@ async function run(cmd, options = {}) {
     } else {
       console.error(chalk.red(`❌ Command failed: ${cmd}`));
     }
+
+    if (typeof error.status !== "undefined") {
+      console.error(chalk.red(`❌ Command exited with status ${error.status}`));
+      process.exit(error.status);
+    } else {
+      console.error(chalk.red('❌ An unknown error occurred.'));
+      process.exit(1);
+    }
   }
 
-  if (typeof error.status !== "undefined") {
-    console.error(chalk.red(`❌ Command exited with status ${error.status}`));
-    process.exit(error.status);
-  } else {
-    console.error(chalk.red('❌ An unknown error occurred.'));
-    process.exit(1);
-  }
+  
 }
 
 function isInsideGitRepo() {
