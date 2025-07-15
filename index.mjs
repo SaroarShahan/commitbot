@@ -4,7 +4,9 @@ import chalk from 'chalk';
 import minimist from 'minimist';
 import { execSync } from 'child_process';
 
-const argv = minimist(process.argv.slice(2));
+const argv = minimist(process.argv.slice(2), {
+  boolean: ['amend', 'no-push', 'no-verify', 'push-only'],
+});
 const commitMsg = argv._[0];
 const remote = argv.remote || 'origin';
 const branch = argv.branch || 'main';
@@ -12,6 +14,7 @@ const files = argv.files || '.';
 const shouldAmend = argv.amend || false;
 const skipPush = argv['no-push'] || false;
 const skipHooks = Boolean(argv['no-verify']);
+const noVerify = skipHooks ? '--no-verify' : '';
 
 
 async function run(cmd, options = {}) {
@@ -68,6 +71,8 @@ ${chalk.yellow('Options:')}
   --branch <name>      Branch name (default: main)
   --amend              Amend the previous commit
   --no-push            Skip git push
+  --no-verify          Skip pre-commit and commit-msg hooks
+  --push-only          Only push changes, Skip staging/commit
   -h, --help           Show this help message
     `);
     return;
@@ -99,11 +104,18 @@ ${chalk.yellow('Options:')}
     finalMessage = answers.msg;
   }
 
+  if (argv['push-only']) {
+    console.log(chalk.blue('🔁 Push-only mode enabled. Skipping commit and staging...'));
+
+    run(`git push ${remote} ${branch}${noVerify}`);
+    console.log(chalk.bold.green('✅ Done!'));
+    process.exit(0);
+  }
+
+
   console.log(chalk.blue(`📂 Adding files: ${files}`));
 
   run(`git add ${files}`);
-
-  const noVerify = skipHooks ? '--no-verify' : '';
 
   if (shouldAmend) {
     console.log(chalk.cyan(`🔧 Amending last commit...`));
