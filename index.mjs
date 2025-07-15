@@ -11,6 +11,8 @@ const branch = argv.branch || 'main';
 const files = argv.files || '.';
 const shouldAmend = argv.amend || false;
 const skipPush = argv['no-push'] || false;
+const skipHooks = Boolean(argv['no-verify']);
+
 
 async function run(cmd, options = {}) {
   try {
@@ -101,12 +103,14 @@ ${chalk.yellow('Options:')}
 
   run(`git add ${files}`);
 
+  const noVerify = skipHooks ? '--no-verify' : '';
+
   if (shouldAmend) {
     console.log(chalk.cyan(`🔧 Amending last commit...`));
     run(`git commit --amend -m "${finalMessage}"`);
   } else {
-    console.log(chalk.green(`📝 Committing: "${finalMessage}"`));
-    run(`git commit -m "${finalMessage}"`);
+    console.log(chalk.green(`📝 Committing: "${finalMessage}"${noVerify}`));
+    run(`git commit -m "${finalMessage}"${noVerify}`);
   }
 
   if (!skipPush) {

@@ -4,19 +4,19 @@ A lightweight CLI tool that automates `git add`, `git commit`, and `git push` �
 
 ---
 
-## 📦 Installation
+### 📦 Installation
 
 ```bash
 yarn add @saroarshahan/gitgc
 ```
 
-## 🛠️ Usage
+### 🛠️ Usage
 
 ```bash
 yarn gitgc "your commit message" [--options]
 ```
 
-## 🔧 Options
+### 🔧 Options
 
 | Flag           | Description                                         | Default  |
 | -------------- | --------------------------------------------------  | -------- |
@@ -27,7 +27,15 @@ yarn gitgc "your commit message" [--options]
 | `--no-push`    | Skips the `git push` step                           | `false`  |
 | `-h`, `--help` | Show help information                               |          |
 
-## 📝 Examples
+### 🧪 Final Behavior
+| Use Case                  | Outcome                             |
+| ------------------------- | ----------------------------------- |
+| User has Husky configured | Hooks run automatically             |
+| User adds `--no-verify`   | Hooks are skipped using `git` flags |
+| User has no Husky         | CLI works as usual                  |
+
+
+### 📝 Examples
 
 ```bash
 # Simple commit and push
@@ -42,20 +50,24 @@ yarn gitgc "fix: reword commit" --amend --no-push
 # Push to different remote and branch
 yarn gitgc "feat: deploy script added" --remote origin --branch dev
 
+# Skip hooks (e.g., Husky)
+gitgc "fix: skip hooks" --no-verify
+
 # Interactive mode (no commit message)
 yarn gitgc
 ```
 
-## 🔍 Features
+### 🔍 Features
 - Prompt-based fallback if no message is provided
 - Checks for uncommitted changes before committing
 - Safe defaults with room for customization
 - Clean CLI experience with color-coded output
+- By default, `gitgc` respects all Git hooks (like Husky’s `pre-commit`, `commit-msg`, `pre-push`).
 
-## 🧑‍💻 Author
+### 🧑‍💻 Author
 
 **Saroar Shahan**  
 [GitHub](https://github.com/SaroarShahan) • [NPM](https://www.npmjs.com/~saroarshahan)
 
-## 📄 License
+### 📄 License
 MIT License
