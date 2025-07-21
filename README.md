@@ -6,56 +6,89 @@ A lightweight CLI tool that automates `git add`, `git commit`, and `git push` �
 
 ### 📦 Installation
 
-```bash
+
+<table>
+<tr>
+  <th>npm</th>
+  <th>yarn</th>
+</tr>
+<tr>
+<td>
+
+```sh
+npm install -g @saroarshahan/gitgc
+```
+
+</td>
+<td>
+
+```sh
+yarn global add @saroarshahan/gitgc
+```
+
+</td>
+</tr>
+<tr>
+<td>
+
+```sh
+npm install @saroarshahan/gitgc
+```
+
+</td>
+<td>
+
+```sh
 yarn add @saroarshahan/gitgc
 ```
+
+</td>
+</tr>
+</table>
 
 ### 🛠️ Usage
 
 ```bash
-yarn gitgc "your commit message" [--options]
+npm gitgc "your commit message" [--options]
 ```
 
 ### 🔧 Options
 
-| Flag           | Description                                         | Default  |
-| -------------- | --------------------------------------------------  | -------- |
-| `--files`      | Specify files or folders to stage                   | `.`      |
-| `--remote`     | Git remote to push to                               | `origin` |
-| `--branch`     | Git branch to push to                               | `main`   |
-| `--amend`      | Amend the last commit instead of creating a new one | `false`  |
-| `--no-push`    | Skips the `git push` step                           | `false`  |
-| `--push-only`  | Skip staging/commit. Only pushes to remote branch.  | `false`  |
-| `-h`, `--help` | Show help information                               |          |
-
-### 🧪 Final Behavior
-| Use Case                  | Outcome                             |
-| ------------------------- | ----------------------------------- |
-| User has Husky configured | Hooks run automatically             |
-| User adds `--no-verify`   | Hooks are skipped using `git` flags |
-| User has no Husky         | CLI works as usual                  |
+| Flag                | Description                                              | Default  |
+| ------------------- | -------------------------------------------------------- | -------- |
+| `-f, --files`       | Specify files or folders to stage                        |   `.`    |
+| `-r, --remote`      | Git remote to push to                                    | `origin` |
+| `-b, --branch`      | Git branch to push to                                    | `main`   |
+| `-a, --amend`       | Amend the last commit instead of creating a new one.     | `false`  |
+| `-np, --no-push`    | Skips the `git push` step                                | `false`  |
+| `-po, --push-only`  | Skip staging/commit. Only pushes to remote branch.       | `false`  |
+| `-nv, --no-verify`  | Hooks are skipped using `git` flags                      |          |
+| `-h`, `--help`      | Show help information                                    |          |
 
 
 ### 📝 Examples
 
 ```bash
+# Use `gitgc` to commit and push changes if you installed it globally
+gitgc "fix: resolve issue with DataTable filter state"
+
 # Simple commit and push
-yarn gitgc "fix: resolve issue with DataTable filter state"
+npm gitgc "fix: resolve issue with DataTable filter state"
 
 # Commit specific file
-yarn gitgc "style: update item alignment in CSS" --files src/header.css
+npm gitgc "style: update item alignment in CSS" --files src/header.css
 
 # Amend the previous commit and skip push
-yarn gitgc "fix: reword commit" --amend --no-push
+npm gitgc "fix: reword commit" --amend --no-push
 
 # Push to different remote and branch
-yarn gitgc "feat: deploy script added" --remote origin --branch dev
+npm gitgc "feat: deploy script added" --remote origin --branch dev
 
 # Skip hooks (e.g., Husky)
 gitgc "fix: skip hooks" --no-verify
 
 # Interactive mode (no commit message)
-yarn gitgc
+npm gitgc
 ```
 
 ### 🔍 Features
