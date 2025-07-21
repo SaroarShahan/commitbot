@@ -4,17 +4,15 @@ import chalk from 'chalk';
 import minimist from 'minimist';
 import { execSync } from 'child_process';
 
-const argv = minimist(process.argv.slice(2), {
-  boolean: ['amend', 'no-push', 'no-verify', 'push-only'],
-});
+const argv = minimist(process.argv.slice(2));
 const commitMsg = argv._[0];
-const remote = argv.remote || 'origin';
-const branch = argv.branch || 'main';
-const files = argv.files || '.';
-const pushOnly = Boolean(argv['push-only']);
-const shouldAmend = Boolean(argv.amend);
-const skipPush = Boolean(argv['no-push']);
-const skipHooks = Boolean(argv['no-verify']);
+const remote = (argv.remote || argv.r) || 'origin';
+const branch = (argv.branch || argv.b) || 'main';
+const files = (argv.files || argv.f) || '.';
+const pushOnly = Boolean(argv['push-only'] || argv['po']);
+const shouldAmend = Boolean(argv['amend'] || argv['a']);
+const skipPush = Boolean(argv['no-push'] || argv['np']);
+const skipHooks = Boolean(argv['no-verify'] || argv['nv']);
 const noVerify = skipHooks ? '--no-verify' : '';
 
 
@@ -67,13 +65,13 @@ async function main() {
 ${chalk.green('Usage:')} gitgc [commit message] [--options]
 
 ${chalk.yellow('Options:')}
-  --files <pattern>    Specify files/folders to add (default: .)
-  --remote <name>      Remote name (default: origin)
-  --branch <name>      Branch name (default: main)
-  --amend              Amend the previous commit
-  --no-push            Skip git push
-  --no-verify          Skip pre-commit and commit-msg hooks
-  --push-only          Only push changes, Skip staging/commit
+  -f, --files <pattern>    Specify files/folders to add (default: .)
+  -r, --remote <name>      Remote name (default: origin)
+  -b --branch <name>      Branch name (default: main)
+  -a, --amend              Amend the previous commit
+  -np, --no-push            Skip git push
+  -nv, --no-verify          Skip pre-commit and commit-msg hooks
+  -po, --push-only          Only push changes, Skip staging/commit
   -h, --help           Show this help message
     `);
     return;
